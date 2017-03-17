@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/index', index);
 app.use('/piggysticker', piggysticker);
 app.use('/file/upload', file);
-app.use('/fileupload', upload);
+app.use('/file_upload', upload);
 
 
 app.locals.title = 'Piggysticker';
