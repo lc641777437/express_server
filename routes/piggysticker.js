@@ -3,6 +3,7 @@
  */
 var express = require('express');
 var piggysticker = express.Router();
+var log = require('../logger');
 
 /* GET home page. */
 piggysticker.get('/', function(req, res, next) {
@@ -10,6 +11,7 @@ piggysticker.get('/', function(req, res, next) {
 });
 
 piggysticker.post('/',function(req, res, next){
+    log.info(req.body);
     res.render('index', {title : 'Get your Post'});
 });
 
