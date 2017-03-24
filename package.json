@@ -16,7 +16,7 @@
     "nodemailer": "^1.2.1"
   },
   "email_service": {
-    "service": "hust",
+    "service": "hust.edu",
     "auth": {
       "user": "lc523@hust.edu.cn",
       "pass": "lc940413"
