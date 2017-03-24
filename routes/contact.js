@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var nodemailer = require('nodemailer');
-var email_service = require('../packgae.json').email_service;
+var email_service = require('../package.json').email_service;
 
 var transporter = nodemailer.createTransport(email_service);
 
