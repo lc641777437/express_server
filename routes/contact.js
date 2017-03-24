@@ -1,14 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var nodemailer = require('nodemailer');
+var email_service = require('../packgae.json').email_service;
 
-var transporter = nodemailer.createTransport({
-    service: 'qq',
-    auth: {
-        user: '641777437@qq.com',
-        pass: 'LC123123'
-    }
-});
+var transporter = nodemailer.createTransport(email_service);
 
 var mailOptions = {
     from: 'bsspirit ', // sender address
@@ -19,7 +14,7 @@ var mailOptions = {
 };
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.post('/', function(req, res, next) {
 	transporter.sendMail(mailOptions, function(error, info){
 	    if(error){
 	        console.log(error);

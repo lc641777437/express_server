@@ -14,5 +14,12 @@
     "morgan": "~1.7.0",
     "serve-favicon": "~2.3.2",
     "nodemailer": "^1.2.1"
+  },
+  "email_service": {
+    "service": "hust",
+    "auth": {
+      "user": "lc523@hust.edu.cn",
+      "pass": "lc940413"
+    }
   }
 }
