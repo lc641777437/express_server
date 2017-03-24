@@ -7,8 +7,6 @@ var bodyParser = require('body-parser');
 var log = require('./logger');
 
 var index = require('./routes/index');
-var upload = require('./routes/upload');
-var file = require('./routes/file');
 
 var app = express();
 
@@ -25,8 +23,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/index', index);
-app.use('/file/upload', file);
-app.use('/file_upload', upload);
 
 
 app.locals.title = 'Piggysticker';
