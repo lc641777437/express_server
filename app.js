@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var log = require('./logger');
 
 var index = require('./routes/index');
+var contact = require('./routes/contact');
 
 var app = express();
 
@@ -23,7 +24,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/index', index);
-
+app.use('/contact', contact);
 
 app.locals.title = 'Piggysticker';
 app.locals.strftime = require('strftime');
