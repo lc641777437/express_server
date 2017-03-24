@@ -1,5 +1,5 @@
 var nodemailer = require('nodemailer');
-
+var log = require('../logger');
 var express = require('express');
 var router = express.Router();
 var email_service = require('../package.json').email_service;
