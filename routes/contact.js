@@ -1,28 +1,14 @@
 var nodemailer = require('nodemailer');
-var smtpTransport = require('nodemailer-smtp-transport');
-var config = require('../config');
 var log = require('../logger');
+var express = require('express');
+var router = express.Router();
+var sendMail = require('../sendMail');
 
-smtpTransport = nodemailer.createTransport(smtpTransport({
-    service: config.email.service,
-    auth: {
-        user: config.email.user,
-        pass: config.email.pass
-    }
-}));
+/* GET home page. */
+router.post('/', function(req, res, next) {
+	log.info("sendMail");
+	sendMail('lc523@hust.edu.cn', 'Blog_Contact', '<p>heelo</p>');
+    res.render('index', { title: 'Express' });
+});
 
-var sendMail = function (recipient, subject, html) {
-    smtpTransport.sendMail({
-        from: config.email.user,
-        to: recipient,
-        subject: subject,
-        html: html
-    }, function (error, response) {
-        if (error) {
-            log.error(error);
-        }
-        log.info('sendMail success.')
-    });
-}
-
-module.exports = sendMail;
+module.exports = router;
