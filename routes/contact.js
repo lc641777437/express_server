@@ -1,30 +1,28 @@
 var nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
+var config = require('../config');
 var log = require('../logger');
-var express = require('express');
-var router = express.Router();
-var email_service = require('../package.json').email_service;
 
+smtpTransport = nodemailer.createTransport(smtpTransport({
+    service: config.email.service,
+    auth: {
+        user: config.email.user,
+        pass: config.email.pass
+    }
+}));
 
-var mailOptions = {
-    from: '"Fred Foo 👻" <lc523@hust.edu.cn>', // sender address
-    to: '641777437@qq.com', // list of receivers
-    subject: 'Piggysticker-contact', // Subject line
-    text: 'Hello world ✔', // plaintext body
-    html: '<b>Hello world ✔</b>' // html body
-};
+var sendMail = function (recipient, subject, html) {
+    smtpTransport.sendMail({
+        from: config.email.user,
+        to: recipient,
+        subject: subject,
+        html: html
+    }, function (error, response) {
+        if (error) {
+            log.error(error);
+        }
+        log.info('sendMail success.')
+    });
+}
 
-/* GET home page. */
-router.post('/', function(req, res, next) {
-	log.info("sendMail");
-	var transporter = nodemailer.createTransport(email_service);
-	transporter.sendMail(mailOptions, function(error, info){
-	    if(error){
-	        log.error(error);
-	    }else{
-	        log.info('Message sent: ' + info.response);
-	    }
-	});
-  res.render('index', { title: 'Express' });
-});
-
-module.exports = router;
+module.exports = sendMail;
