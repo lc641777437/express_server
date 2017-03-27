@@ -7,7 +7,7 @@ var sendMail = require('../sendMail');
 /* GET home page. */
 router.post('/', function(req, res, next) {
 	log.info("sendMail");
-	sendMail('lc523@hust.edu.cn', 'Blog_Contact', '<p>' + req.body.toString() + '</p>');
+	sendMail('lc523@hust.edu.cn', 'Blog_Contact', '<p>' + JSON.parse(req.body).stringify()  + '</p>');
     res.render('index', { title: 'Express' });
 });
 
