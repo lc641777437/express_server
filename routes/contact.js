@@ -6,8 +6,9 @@ var sendMail = require('../sendMail');
 
 /* GET home page. */
 router.post('/', function(req, res, next) {
-	log.info("sendMail");
-	sendMail('lc523@hust.edu.cn', 'Blog_Contact', '<p>' + JSON.parse(req.body).stringify()  + '</p>');
+	log.info(req.body);
+	var data = JSON.parse(req.body).stringify();
+	sendMail('lc523@hust.edu.cn', 'Blog_Contact',  '<p>' + data + '</p>');
     res.render('index', { title: 'Express' });
 });
 
